@@ -1,0 +1,66 @@
+# todo write and test
+
+server {
+    listen 80;
+    server_name {{ project_name }}.tld;
+
+    set project_root /your/project/root
+
+    location / {
+        uwsgi_pass  unix:///var/run/uwsgi.sock;
+        include     /etc/nginx/uwsgi_params;
+    }
+
+    location ~ ^/(crossdomain\.xml|robots\.txt|favicon\.ico)$ {
+        root $project_root/public/;
+        expires 1d;
+        access_log  off;
+    }
+
+    location /media  {
+        alias $project_root/public/media;
+        access_log  off;
+    }
+
+    location /static {
+        alias $project_root/public/static;
+        expires 1d;
+        access_log  off;
+    }
+
+    error_page 502 503 504 @maintenance;
+    location @maintenance {
+        root $project_root/{{ project_name }}/templates;
+        rewrite ^(.*)$ /500.html break;
+    }
+
+    access_log /var/log/nginx/{{ project_name }}_access.log;
+    error_log    /var/log/nginx/{{ project_name }}_error.log;
+}
+
+server {
+    listen 80;
+    server_name www.{{ project_name }}.tld;
+
+    rewrite .* http://{{ project_name }}.tld;
+}
+
+#server {
+#    listen 80;
+#    server_name media.{{ project_name }}.tld;
+#
+#    root /path/to/media/dir/;
+#
+#    access_log  off;
+#    expires     1d;
+#}
+
+#server {
+#    listen 80;
+#    server_name static.{{ project_name }}.tld;
+#
+#    root /path/to/static/dir/;
+#
+#    access_log  off;
+#    expires     1d;
+#}

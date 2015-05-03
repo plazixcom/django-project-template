@@ -1,9 +1,2 @@
 [program:{{ project_name }}]
-command=/home/project/env/bin/uwsgi /home/project/uwsgi.ini
-stdout_logfile=/home/project/logs/wsgi.log
-stderr_logfile=/home/project/logs/wsgi_err.log
-autostart=true
-autorestart=true
-redirect_stderr=true
-stopwaitsecs = 60
-stopsignal=INT
+; todo write

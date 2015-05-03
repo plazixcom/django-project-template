@@ -3,6 +3,6 @@ Installation
 
 To start a new project with this template::
 
-    django-admin.py startproject --template=https://github.com/plazixcom/django-project-template/zipball/master --extension=py,yml,conf,xml,ini <project_name>
+    django-admin.py startproject --template=https://github.com/plazixcom/django-project-template/zipball/master --extension=py,example <project_name>
 
 

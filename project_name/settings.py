@@ -37,7 +37,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ########################################################################################################################
 
 
-__YAML_SETTING_FILENAME = get_env_setting('{{ project_name }}.yml')
+__YAML_SETTING_FILENAME = get_env_setting('{{ project_name }}_settings')
 if not os.path.isfile(__YAML_SETTING_FILENAME):
     raise ImproperlyConfigured("File %s not found." % __YAML_SETTING_FILENAME)
 
@@ -91,17 +91,17 @@ __DATABASE_ENGINE_MAP = {
 }
 
 DATABASES = {}
-for __name, __settings in __YAML_SETTING['database'].iteritems():
-    if __settings['engine'] not in __DATABASE_ENGINE_MAP:
-        raise ImproperlyConfigured('Database engine %s not found.' % __settings['engine'])
+for __name, __db_settings in __YAML_SETTING['database'].iteritems():
+    if __db_settings['engine'] not in __DATABASE_ENGINE_MAP:
+        raise ImproperlyConfigured('Database engine %s not found.' % __db_settings['engine'])
 
     DATABASES.update({
         __name: {
-            'ENGINE': __DATABASE_ENGINE_MAP[__settings['engine']],
-            'NAME': __settings['name'],
-            'USER': __settings['user'],
-            'PASSWORD': __settings['password'],
-            'HOST': __settings['host'],
+            'ENGINE': __DATABASE_ENGINE_MAP[__db_settings['engine']],
+            'NAME': __db_settings['name'],
+            'USER': __db_settings['user'],
+            'PASSWORD': __db_settings['password'],
+            'HOST': __db_settings['host'],
         }
     })
 
