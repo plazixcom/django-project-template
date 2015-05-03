@@ -1,0 +1,11 @@
+-r base.txt
+django-debug-toolbar
+# Required by django-debug-toolbar
+sqlparse
+
+coverage
+flake8
+# Required by flake8
+pyflakes
+pep8
+mccabe

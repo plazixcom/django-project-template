@@ -1,0 +1,9 @@
+mysql-python
+django==1.8
+pyyaml
+Pillow
+django-compressor
+
+# Required by django-compressor
+django-appconf
+six

@@ -1,0 +1,18 @@
+project:
+  # SECURITY WARNING: don't run with debug turned on in production!
+  debug: false
+  timezone: UTC
+  language_code: 'en-us'
+
+  static_url: '/static/'
+  static_root: ''
+  media_url: '/media/'
+  media_root: ''
+
+database:
+  default:
+    engine: mysql
+    name:
+    user:
+    password:
+    host: localhost

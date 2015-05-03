@@ -1,0 +1,12 @@
+.idea/
+.env
+nbproject/
+nbactions.xml
+
+*.log
+*.py[co]
+
+conf/*.conf
+conf/*.xml
+conf/*.ini
+conf/*.yml
